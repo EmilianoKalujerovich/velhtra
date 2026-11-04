@@ -195,7 +195,7 @@ footer{border-top:1px solid var(--line);margin-top:120px;padding:56px 0 40px;bac
 .foot a:hover{color:#fff}
 .foot a.logo{display:flex;color:var(--fg);margin-bottom:0}
 .foot .about{color:var(--muted);max-width:300px;margin-top:14px}
-.bigword{margin-top:72px;font-size:clamp(80px,19vw,270px);font-weight:800;letter-spacing:-.04em;line-height:.8;text-align:center;
+.bigword{margin-top:72px;font-size:clamp(64px,16.5vw,240px);font-weight:800;letter-spacing:-.04em;line-height:.8;text-align:center;
   background:linear-gradient(180deg,rgba(124,92,255,.32),rgba(124,92,255,0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
 .legal{margin-top:24px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--dim);flex-wrap:wrap;gap:8px}
 @media (max-width:760px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}

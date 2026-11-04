@@ -5,7 +5,7 @@
 const FORM_ENDPOINT = '';
 
 (function(){
-  const i18n = window.veltraI18n;
+  const i18n = window.velhtraI18n;
   const modal = document.getElementById('demoModal');
   const form = document.getElementById('demoForm');
   const formView = document.getElementById('demoFormView');
@@ -110,7 +110,7 @@ const FORM_ENDPOINT = '';
       company: form.elements.company.value.trim(),
       message: form.elements.message.value.trim(),
       language: i18n.lang,
-      _subject: 'Nueva solicitud de demo — Veltra'
+      _subject: 'Nueva solicitud de demo — Velhtra'
     };
 
     submit.disabled = true;

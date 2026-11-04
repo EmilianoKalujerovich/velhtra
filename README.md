@@ -1,6 +1,6 @@
-# Veltra
+# Velhtra
 
-Sitio web de Veltra: automatizaciones y software a medida para PyMEs.
+Sitio web de Velhtra: automatizaciones y software a medida para PyMEs.
 
 Sitio estático, sin build: HTML, CSS y JavaScript plano. Three.js (r128) y las fuentes se cargan desde CDN.
 

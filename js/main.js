@@ -7,7 +7,7 @@
   const onScrollHdr = () => hdr.classList.toggle('scrolled', scrollY > 20);
   addEventListener('scroll', onScrollHdr, {passive:true}); onScrollHdr();
 
-  const i18n = window.veltraI18n;
+  const i18n = window.velhtraI18n;
 
   // Menú mobile
   const burger = document.getElementById('burger');
@@ -174,15 +174,15 @@
     ctx.beginPath(); ctx.arc(512, 532, 27, 0, 7); ctx.fill();
   });
 
-  // 2) La palabra VELTRA
+  // 2) La palabra VELHTRA
   const wordFont = ctx => {
-    ctx.font = '800 128px Inter, system-ui, sans-serif';
+    ctx.font = '800 112px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     if ('letterSpacing' in ctx) ctx.letterSpacing = '6px';
   };
   const wordmark = () => fromCanvas(640, 150, 4.1, [
-    [ctx => { wordFont(ctx); ctx.fillText('VELTRA', 320, 80); }, .6],
-    [ctx => { wordFont(ctx); ctx.lineWidth = 3; ctx.strokeText('VELTRA', 320, 80); }, .4]
+    [ctx => { wordFont(ctx); ctx.fillText('VELHTRA', 320, 80); }, .6],
+    [ctx => { wordFont(ctx); ctx.lineWidth = 3; ctx.strokeText('VELHTRA', 320, 80); }, .4]
   ]);
 
   // 3) Flujo de automatización: WhatsApp/Email → IA → CRM/Calendario/Facturación → Sheets
@@ -235,13 +235,13 @@
   }, 1]]);
 
   const SHAPES = [
-    {name:'Veltra', pos:logoV()},
-    {name:'Veltra', pos:null},          // se completa al cargar la fuente
+    {name:'Velhtra', pos:logoV()},
+    {name:'Velhtra', pos:null},          // se completa al cargar la fuente
     {name:'Tu flujo, automatizado', pos:flow(), flow:true}
   ];
   SHAPES[1].pos = wordmark();
   if (document.fonts && document.fonts.load) {
-    document.fonts.load('800 128px Inter').then(() => { SHAPES[1].pos = wordmark(); if (shapeIdx === 1) target = SHAPES[1].pos; });
+    document.fonts.load('800 112px Inter').then(() => { SHAPES[1].pos = wordmark(); if (shapeIdx === 1) target = SHAPES[1].pos; });
   }
   const flowBuf = new Float32Array(SHAPES[2].pos);
 

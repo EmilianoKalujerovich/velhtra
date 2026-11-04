@@ -4,8 +4,8 @@
 (function(){
   const DICT = {
     es: {
-      'meta.title': 'Veltra — Automatización para PyMEs',
-      'meta.description': 'Veltra automatiza las tareas repetitivas de PyMEs de cualquier rubro: agentes de WhatsApp con IA, turnos, facturas, CRM, reportes y software a medida.',
+      'meta.title': 'Velhtra — Automatización para PyMEs',
+      'meta.description': 'Velhtra automatiza las tareas repetitivas de PyMEs de cualquier rubro: agentes de WhatsApp con IA, turnos, facturas, CRM, reportes y software a medida.',
 
       'nav.services': 'Servicios',
       'nav.process': 'Cómo trabajamos',
@@ -26,7 +26,7 @@
       'hero.meta3': 'Soporte en español e inglés',
       'hero.hover': 'Pasá el mouse ✦',
       'hero.scroll': 'Scroll',
-      'shape.0': 'Veltra',
+      'shape.0': 'Velhtra',
       'shape.1': 'Nuestro nombre',
       'shape.2': 'Tu flujo, automatizado',
       'shape.dot0': 'Logo', 'shape.dot1': 'Nombre', 'shape.dot2': 'Flujo',
@@ -122,8 +122,8 @@
     },
 
     en: {
-      'meta.title': 'Veltra — Automation for small businesses',
-      'meta.description': 'Veltra automates the repetitive work of small businesses in any industry: AI WhatsApp agents, scheduling, invoices, CRM, reports and custom software.',
+      'meta.title': 'Velhtra — Automation for small businesses',
+      'meta.description': 'Velhtra automates the repetitive work of small businesses in any industry: AI WhatsApp agents, scheduling, invoices, CRM, reports and custom software.',
 
       'nav.services': 'Services',
       'nav.process': 'How we work',
@@ -144,7 +144,7 @@
       'hero.meta3': 'Support in English & Spanish',
       'hero.hover': 'Hover me ✦',
       'hero.scroll': 'Scroll',
-      'shape.0': 'Veltra',
+      'shape.0': 'Velhtra',
       'shape.1': 'Our name',
       'shape.2': 'Your workflow, automated',
       'shape.dot0': 'Logo', 'shape.dot1': 'Name', 'shape.dot2': 'Workflow',
@@ -242,8 +242,8 @@
 
   const listeners = [];
   const store = {
-    get(){ try { return localStorage.getItem('veltra-lang'); } catch (e) { return null; } },
-    set(v){ try { localStorage.setItem('veltra-lang', v); } catch (e) {} }
+    get(){ try { return localStorage.getItem('velhtra-lang'); } catch (e) { return null; } },
+    set(v){ try { localStorage.setItem('velhtra-lang', v); } catch (e) {} }
   };
 
   const fromUrl = new URLSearchParams(location.search).get('lang');
@@ -281,7 +281,7 @@
     if (b) setLang(b.dataset.lang);
   });
 
-  window.veltraI18n = {
+  window.velhtraI18n = {
     t, setLang, apply,
     get lang(){ return lang; },
     onChange(fn){ listeners.push(fn); }
