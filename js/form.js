@@ -1,12 +1,10 @@
 // Formulario "Agendá una demo".
-// Las solicitudes se envían por email con FormSubmit (https://formsubmit.co), sin backend propio.
-// - FORM_TO recibe el email principal; FORM_CC son copias adicionales.
-// - La primera vez que alguien envía el formulario, FormSubmit manda un email de activación a FORM_TO:
-//   hay que confirmarlo una sola vez para que empiecen a llegar las solicitudes.
-// - Si FORM_TO queda vacío, el formulario funciona en modo demo: valida y muestra la confirmación, pero no envía nada.
-const FORM_TO = 'emiliano@velhtra.com';
-const FORM_CC = [];
-const FORM_ENDPOINT = FORM_TO ? `https://formsubmit.co/ajax/${FORM_TO}` : '';
+// Las solicitudes se envían por email con Formspree (https://formspree.io), igual que en Bottino Ingeniería.
+// Pegar acá el ID del formulario de Formspree (lo que va después de /f/ en la URL, ej: 'mrbryjjb').
+// Los destinatarios se configuran en el panel de Formspree, no en este código.
+// Si queda vacío, el formulario funciona en modo demo: valida y muestra la confirmación, pero no envía nada.
+const FORMSPREE_ID = 'xdeeydvd';
+const FORM_ENDPOINT = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : '';
 
 (function(){
   const i18n = window.velhtraI18n;
@@ -114,11 +112,8 @@ const FORM_ENDPOINT = FORM_TO ? `https://formsubmit.co/ajax/${FORM_TO}` : '';
       company: form.elements.company.value.trim(),
       message: form.elements.message.value.trim(),
       language: i18n.lang,
-      _subject: 'Nueva solicitud de demo — Velhtra',
-      _template: 'table',
-      _captcha: 'false'
+      _subject: 'Nueva solicitud de demo — Velhtra'
     };
-    if (FORM_CC.length) data._cc = FORM_CC.join(',');
 
     submit.disabled = true;
     submit.firstElementChild.textContent = i18n.t('form.sending');
@@ -130,7 +125,7 @@ const FORM_ENDPOINT = FORM_TO ? `https://formsubmit.co/ajax/${FORM_TO}` : '';
           body: JSON.stringify(data)
         });
         const json = await res.json().catch(() => ({}));
-        if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'HTTP ' + res.status);
+        if (!res.ok || json.ok === false) throw new Error(json.message || 'HTTP ' + res.status);
       } else {
         await new Promise(r => setTimeout(r, 700));
       }
