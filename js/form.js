@@ -1,8 +1,12 @@
 // Formulario "Agendá una demo".
-// Para recibir las solicitudes, crear un formulario en https://formspree.io y pegar su URL acá
-// (ej: 'https://formspree.io/f/abcdwxyz'). Mientras esté vacío, el formulario funciona en modo demo:
-// valida y muestra la confirmación, pero no envía nada.
-const FORM_ENDPOINT = '';
+// Las solicitudes se envían por email con FormSubmit (https://formsubmit.co), sin backend propio.
+// - FORM_TO recibe el email principal; FORM_CC son copias adicionales.
+// - La primera vez que alguien envía el formulario, FormSubmit manda un email de activación a FORM_TO:
+//   hay que confirmarlo una sola vez para que empiecen a llegar las solicitudes.
+// - Si FORM_TO queda vacío, el formulario funciona en modo demo: valida y muestra la confirmación, pero no envía nada.
+const FORM_TO = 'emiliano@velhtra.com';
+const FORM_CC = [];
+const FORM_ENDPOINT = FORM_TO ? `https://formsubmit.co/ajax/${FORM_TO}` : '';
 
 (function(){
   const i18n = window.velhtraI18n;
@@ -110,8 +114,11 @@ const FORM_ENDPOINT = '';
       company: form.elements.company.value.trim(),
       message: form.elements.message.value.trim(),
       language: i18n.lang,
-      _subject: 'Nueva solicitud de demo — Velhtra'
+      _subject: 'Nueva solicitud de demo — Velhtra',
+      _template: 'table',
+      _captcha: 'false'
     };
+    if (FORM_CC.length) data._cc = FORM_CC.join(',');
 
     submit.disabled = true;
     submit.firstElementChild.textContent = i18n.t('form.sending');
@@ -122,7 +129,8 @@ const FORM_ENDPOINT = '';
           headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
           body: JSON.stringify(data)
         });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'HTTP ' + res.status);
       } else {
         await new Promise(r => setTimeout(r, 700));
       }
